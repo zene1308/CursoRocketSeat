@@ -15,7 +15,7 @@ export default function Dashboard() {
     }) , [user_id]);
 
     useEffect(() => {
-        socket.on('bookquing_request', data => {
+        socket.on('booking_request', data => {
             setRequests([...requests,data])
         })
     }, [requests, socket]);
