@@ -116,4 +116,20 @@ var usuario2 = _objectSpread({}, usuario1, {
   sexo: 'M'
 });
 
-console.log(usuario2);
+console.log(usuario2); //template literals
+
+var nome1 = "Zene";
+var idade1 = 66;
+console.log('Meu nome é ' + nome1 + 'e tenho ' + idade1 + ' anos');
+console.log("Meu nome \xE9 ".concat(nome1, " e tenho ").concat(idade1, " anos")); //object short syntax
+//quando uso uma variavel de um nome recebendo outra de mesmo nome posso
+//abreviar
+
+var nome2 = 'maria';
+var idade2 = 22;
+var pessoa3 = {
+  nome2: nome2,
+  idade2: idade2,
+  sexo: 'M'
+};
+console.log(pessoa3);

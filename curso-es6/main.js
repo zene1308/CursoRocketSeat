@@ -114,3 +114,27 @@ const usuario2 = {
 
 console.log(usuario2);
 
+
+//template literals
+const nome1 ="Zene";
+const idade1 = 66;
+
+console.log('Meu nome é ' + nome1 + 'e tenho ' + idade1 + ' anos');
+console.log(`Meu nome é ${nome1} e tenho ${idade1} anos`);
+
+//object short syntax
+//quando uso uma variavel de um nome recebendo outra de mesmo nome posso
+//abreviar
+const nome2 = 'maria';
+const idade2 = 22;
+
+const pessoa3 = {
+    nome2,
+    idade2, 
+    sexo: 'M'
+};
+
+console.log(pessoa3);
+
+
+
