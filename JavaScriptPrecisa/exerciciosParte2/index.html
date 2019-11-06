@@ -7,10 +7,16 @@
 </head>
 
 <body>
-   <div class="app">
-      <button class="botao" id="button1">me pressione</button>
-      <!-- <div class="box"></div> -->
-   </div>
+
+   <button class="botao" id="button1">me pressione</button>
+   <div id="box"></div>
+   <div class="lista"></div>
+
+   <input type="text" name="nome" id="input1">
+   <button id="button1" onClick="adicionar()">Adicionar</button>
+   <!-- <button id="button1">Adicionar</button> -->
+
+
    <script>
       // var linkElement = document.createElement('a');
       // linkElement.setAttribute('href', 'http://www.globo.com');
@@ -25,25 +31,64 @@
       // var inputElement = document.querySelector('#nome');
       // containerElement.removeChild(inputElement);
 
-
+      function getRandomColor() {
+         var letters = "0123456789ABCDEF";
+         var color = "#";
+         for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+         }
+         return color;
+      }
 
       var btnElement = document.querySelector('button.botao');
+      var quadradoElement = document.getElementById('box');
 
       btnElement.onclick = function () {
-         var boxElement = document.createElement('class');
-         //boxElement.setAttribute('width', '100px');
-         //boxElement.setAttribute('heighttitle', '100px');   
-         //boxElement.setAttribute('backgroundColor', '#f004'); 
+         var quadrado = document.createElement('div');
+         quadrado.style.width = '100px';
+         quadrado.style.height = '100px';
+         quadrado.style.backgroundColor = '#F00';
+         quadradoElement.appendChild(quadrado);
 
-
-         // var boxElement = document.querySelector('.box');
-          //boxElement.style.width = '100px';
-          //boxElement.style.height = '100px';
-          //boxElement.style.backgroundColor = '#f00';
-
-         //var containerElement = document.querySelector('#app');
-         //containerElement.appendChild(boxElement);
+         quadrado.onmouseover = function () {
+            quadrado.style.backgroundColor = getRandomColor();
+         }
       }
+
+      var nomes = ["Diego", "Gabriel", "Lucas"];
+
+      var listaDiv = document.querySelector('.lista');
+      var listaElements = document.createElement('ul');
+      var itensListaElements = document.createElement('li');
+      listaDiv.appendChild(listaElements);
+
+      for (nome of nomes) {
+         var itensListaElements = document.createElement('li');
+         var texto = document.createTextNode(nome);
+         itensListaElements.appendChild(texto);
+         listaElements.appendChild(itensListaElements);
+      }
+
+      var inputElement = document.getElementById('input1');
+
+      function adicionar() {
+         var itensListaElements = document.createElement('li');
+         var texto = document.createTextNode(inputElement.value);
+         itensListaElements.appendChild(texto);
+         listaElements.appendChild(itensListaElements);
+         inputElement.value = '';
+
+      }
+
+
+
+
+
+
+
+
+
+
 
 
    </script>
