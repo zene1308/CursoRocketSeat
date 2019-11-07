@@ -29,30 +29,33 @@ var buttonElement = document.querySelector('#app button');
 
 var nomes = [];
 
-function renderNomes() {
+function renderNomes(nomes, carregando) {
    listElement.innerHTML = '';
    for (nome of nomes) {
       var nomeElement = document.createElement('li');
-      var nomeText = document.createTextNode(nome);
+      if (nome !== '') {
+         var nomeText = document.createTextNode(nome.name);
+      } else {
+         var nomeText = document.createTextNode('carregando');
+      }
+
+
+      nomeElement.appendChild(nomeText);
       listElement.appendChild(nomeElement);
-      listElement.appendChild(nomeText);
    }
 }
 
-renderNomes();
-
 function addNome() {
    var nomeText = inputElement.value;
+   renderNomes('', 'carregando');
 
    axios.get(`https://api.github.com/users/${nomeText}/repos`)
       .then(function (response) {
-         nomes.push(response.data[0]);
          inputElement.value = '';
-         renderNomes();
-         console.log(response);
+         renderNomes(response.data, '');
       })
       .catch(function (error) {
-         console.warn(error);
+         alert(error);
       });
 }
 
