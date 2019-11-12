@@ -1,110 +1,146 @@
+// //classes normal
+// class List {
+//    constructor() {
+//       this.data = [];
+//    }
+//    add(data) {
+//       this.data.push(data);
+//       //console.log(this.data);
+//    }
+// }
+// class TodoList extends List {
+//    constructor() {
+//       super();
+//       this.usuario = 'maconha';
+//    }
+//    mostraUsuario() {
+//       //console.log(this.usuario);
+//    }
+// }
+// var MinhaLista = new TodoList();
+// document.getElementById('novotodo').onclick = function () {
+//    MinhaLista.add('Novo Todo');
+// }
+// MinhaLista.mostraUsuario();
+// //classe estatica
+// class Matematica {
+//    static soma(a, b) {
+//       return a + b;
+//    }
+// }
+// //console.log(Matematica.soma(1, 2));
+// //constantes 
+// //constantes n mudam de valor
+// //so pode mudar se for um objeto (mutacao)
+// const usuario = { nome: 'bostao' };
+// usuario.nome = 'joao';
+// //console.log(usuario);
+// //variaveis de escopo
+// function teste(x) {
+//    let y = 2;
+//    if (x > 5) {
+//       //console.log(x, y);
+//    }
+// }
+// teste(10);
+// //operacoes em array
+// const arr = [1, 3, 4, 5, 8, 9];
+// //map percorre o vetor e retorna uma informacao
+// const newArr = arr.map(function (item, index) {
+//    return item + index;
+// });
+// //console.log(newArr);
+// //reduce consome o vetor e transforma em uma unica informacao
+// const sum = arr.reduce(function (total, next) {
+//    return total + next;
+// });
+// //console.log(sum);
+// //filter 
+// const filter = arr.filter(function (item) {
+//    return item % 2 === 0;
+// });
+// //console.log(filter);
+// //find verifica se existe uma informacao dentro do array
+// const find = arr.find(function (item) {
+//    return item === 4;
+// });
+// //console.log(find);
+// //arrow function
+// const newArray = arr.map(item => item * 2);
+// //console.log(newArray);
+// const testes = () => ({ nome: 'Oscar Romeu'});
+// //console.log(testes());
+// //valores padrao
+// function somar(a = 3, b = 6){
+//    return a + b;
+// }
+// //console.log(somar(1));
+// //console.log(somar());
+// //valor padrao com arrow function
+// const somar2 = (a = 2, b = 5) => a + b;
+// //console.log(somar2(1));
+// //console.log(somar2());
+// //desestruturação de objetos
+// const usuarios = {
+//    nome: 'joao',
+//    idade: 22,
+//    endereco: {
+//       cidade: 'Dois Vizinhos',
+//       estado: 'SC',
+//    },
+// };
+// const { nome, idade, endereco: { cidade } } = usuarios;
+// //console.log(nome,idade, cidade);
+// function mostraNome({nome, idade}){
+//    //console.log(nome, idade);
+// };
+// mostraNome(usuarios);
+// //operador rest e spred
+// //rest pega o resto das propiedades
+// const user = {
+//    nomee: 'Diego',
+//    idade: 23,
+//    empresa: 'Google'
+// };
+// const { nomee, ...resto} = user;
+// //console.log(nomee);
+// //console.log(resto);
+// const arrayy = [1,2,3,4];
+// const [a,b, ...c] = arrayy;
+// //console.log(a);
+// //console.log(b);
+// //console.log(c);
+// //rest com paramtro de funcao
+// function somaGambi(...params){
+//    return params.reduce((total, next) => total + next);
+// };
+// //console.log(somaGambi(1,3,4));
+// //spread 
+// //spread repassa as informações de um objeto
+// //ou array para outra estrutura
+// const arr1 = [1,2,3];
+// const arr2 = [4,5,6];
+// const arr3 = [...arr1, ...arr2];
+// //console.log(arr3);
+// const usuario1 = {
+//    nome: 'Joao',
+//    idade: 22,
+//    empresa: 'Google.com',
+// };
+// const usuario2 = { ...usuario1, nome: 'Cuzao', sexo: 'M'};
+// //console.log(usuario2);
+// //template literals
+// const nome3 = 'vini';
+// const idade3 = 66;
+// //console.log(`meu nome é ${nome3} e tenho ${idade3} anos`);
+// //console.log(` o ${nome3} é viadao`);
+// //object short sintax
+// const nome4 = 'Cu de anu';
+// const idade4 = 24;
+// const usuario4 = {
+//    nome4,
+//    idade4,
+//    empresa: 'RocketSeat',
+// };
+// //console.log(usuario4);
 "use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-//classes normal
-var List =
-/*#__PURE__*/
-function () {
-  function List() {
-    _classCallCheck(this, List);
-
-    this.data = [];
-  }
-
-  _createClass(List, [{
-    key: "add",
-    value: function add(data) {
-      this.data.push(data);
-      console.log(this.data);
-    }
-  }]);
-
-  return List;
-}();
-
-var TodoList =
-/*#__PURE__*/
-function (_List) {
-  _inherits(TodoList, _List);
-
-  function TodoList() {
-    var _this;
-
-    _classCallCheck(this, TodoList);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(TodoList).call(this));
-    _this.usuario = 'maconha';
-    return _this;
-  }
-
-  _createClass(TodoList, [{
-    key: "mostraUsuario",
-    value: function mostraUsuario() {
-      console.log(this.usuario);
-    }
-  }]);
-
-  return TodoList;
-}(List);
-
-var MinhaLista = new TodoList();
-
-document.getElementById('novotodo').onclick = function () {
-  MinhaLista.add('Novo Todo');
-};
-
-MinhaLista.mostraUsuario(); //classe estatica
-
-var Matematica =
-/*#__PURE__*/
-function () {
-  function Matematica() {
-    _classCallCheck(this, Matematica);
-  }
-
-  _createClass(Matematica, null, [{
-    key: "soma",
-    value: function soma(a, b) {
-      return a + b;
-    }
-  }]);
-
-  return Matematica;
-}();
-
-console.log(Matematica.soma(1, 2)); //constantes 
-//constantes n mudam de valor
-//so pode mudar se for um objeto (mutacao)
-
-var usuario = {
-  nome: 'bostao'
-};
-usuario.nome = 'joao';
-console.log(usuario); //variaveis de escopo
-
-function teste(x) {
-  var y = 2;
-
-  if (x > 5) {
-    console.log(x, y);
-  }
-}
-
-teste(10);
