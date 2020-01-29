@@ -1,13 +1,31 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, TouchableOpacity, AsyncStorage, Text, TextInput } from 'react-native';
+import { SafeAreaView, StyleSheet, TouchableOpacity, AsyncStorage, Text, TextInput, Platform, Alert } from 'react-native';
 
-function handleSubmit(){}
+import api from '../services/api';
 
 export default function Book({ navigation }) {
    const [date, setDate] = useState('');
    const id = navigation.getParam('id');
+
+   async function handleSubmit(){
+      const user_id = await AsyncStorage.getItem('user');
+   
+      await api.post(`/spots/${id}/bookings`, {
+         date
+      }, {
+         headers: { user_id }
+      })
+   
+      Alert.alert('Solicitação de reserva enviada.');
+   
+      navigation.navigate('List');
+   }
+
+   function handleCancel(){
+      navigation.navigate('List'); 
+   }
    return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
          <Text style={styles.label}> DATA DE INTERESSE</Text>
          <TextInput
             style={styles.input}
@@ -19,7 +37,11 @@ export default function Book({ navigation }) {
             onChangeText={setDate}
          />
          <TouchableOpacity onPress={handleSubmit} style={styles.button}>
-            <Text style={styles.buttonText}>Encontrar spots</Text>
+            <Text style={styles.buttonText}>Solicitar Reserva</Text>
+         </TouchableOpacity>
+
+         <TouchableOpacity onPress={handleCancel} style={[styles.button, styles.cancelButton]}>
+            <Text style={styles.buttonText}>Cancelar</Text>
          </TouchableOpacity>
 
       </SafeAreaView>
@@ -27,10 +49,17 @@ export default function Book({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+   container: {
+      margin: 30,
+      flex: 1,
+      paddingTop: Platform.OS === 'android' ? 25 : 0
+   },
+
    label: {
       fontWeight: 'bold',
       color: '#444',
       marginBottom: 8,
+      marginTop: 20,
    },
 
    input: {
@@ -50,6 +79,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 2,
+   },
+
+   cancelButton: {
+      backgroundColor: '#ccc',
+      marginTop: 10,
    },
 
    buttonText: {
